@@ -1,0 +1,15 @@
+<launch>
+	<!-- load urdf -->
+	<arg name="urdf_file" default="$(find xacro)/xacro '$(find bot_description)/urdf/robot.urdf'" />
+	<param name="robot_description" command="$(arg urdf_file)" />
+
+	<node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher">
+		<param name="use_gui" value="false"/>
+		<param name="rate" value="50"/>
+	</node>
+
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" respawn="true">
+		<param name="publish_frequency" type="double" value="50.0"/>
+	</node>
+
+ </launch>

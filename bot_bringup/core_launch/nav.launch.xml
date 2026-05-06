@@ -1,0 +1,10 @@
+<launch>
+    <!-- Navigation Modules -->
+    <include file="$(find bot_navigation)/launch/navigation.launch.xml"/>
+
+    <!-- Localization Modules -->
+    <include file="$(find bot_localization)/launch/pose_estimation.launch.xml">
+        <arg name="scan_topic"          value="scan"/>
+    </include>
+
+</launch>

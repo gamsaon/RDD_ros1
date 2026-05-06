@@ -1,0 +1,10 @@
+obstacle_range: 2.5
+raytrace_range: 3.0
+
+footprint: [[0.254, 0.24025], [-0.254, 0.24025], [-0.254, -0.24025], [0.254, -0.24025]]
+
+footprint_padding: 0.01
+transform_tolerance: 2.0
+
+# map_type: voxel
+map_type: costmap

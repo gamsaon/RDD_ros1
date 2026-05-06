@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<robot name="Delivery_Bot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find bot_description)/urdf/properties.xacro"/> 
+
+    <!-- Robot Base footprint-->
+    <link name="base_footprint" />
+    <joint name="base_joint" type="fixed">
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+        <origin xyz="0.0 0.0 ${base_height/2+0.015}" rpy="0.0 0.0 0.0"/>
+    </joint>
+
+    <!-- Robot base link-->
+    <link name="base_link"/>
+
+    <!-- Wheel -->
+    <link name="wheel_left_link"/>
+    <joint name="base_to_left_wheel_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="wheel_left_link"/>
+        <origin xyz="${(base_length/2+wheel_xoff)} ${(base_width/2+wheel_yoff)} ${wheel_zoff}" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+    
+    <link name="wheel_right_link"/>
+    <joint name="base_to_right_wheel_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="wheel_right_link"/>
+        <origin xyz="${(base_length/2+wheel_xoff)} ${-(base_width/2+wheel_yoff)} ${wheel_zoff}" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <!-- Caster -->
+    <link name="caster_left_link"/>
+    <joint name="base_to_left_caster_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="caster_left_link"/>
+        <origin xyz="${-(base_length/2+caster_xoff)} ${(base_width/2+caster_yoff)} ${caster_zoff}" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="caster_right_link"/>
+    <joint name="base_to_right_caster_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="caster_right_link"/>
+        <origin xyz="${-(base_length/2+caster_xoff)} ${-(base_width/2+caster_yoff)} ${caster_zoff}" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+
+    <!-- LiDAR -->
+    <joint name="base_to_laser_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="base_laser_link"/>
+        <origin xyz="${(base_length/2+lidar_xoff)} 0.0 ${lidar_zoff}" rpy="0 0 0"/>
+        <!-- <axis xyz="0 0 1"/> -->
+    </joint>
+    <link name="base_laser_link"/>
+
+
+    <!-- IMU -->
+    <link name="imu_link" />
+    <joint name="imu_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="imu_link"/>
+        <!-- <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/> -->
+        <origin xyz="${(base_length/2+imu_xoff)} 0.0 ${imu_zoff}" rpy="0.0 1.5708 0.0"/>
+    </joint>
+
+
+    <!-- Camera -->
+    <!-- <link name="cam_front_link"/>
+    <joint name="base_to_front_cam_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="cam_front_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0 "/>
+    </joint>
+
+
+    <link name="cam_rear_link"/>
+    <joint name="base_to_rear_cam_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="cam_rear_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0 "/>
+    </joint> -->
+
+</robot>

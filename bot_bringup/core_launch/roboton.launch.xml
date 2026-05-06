@@ -1,0 +1,21 @@
+<launch>
+    <!-- Robot State Publishing using URDF -->
+    <include file="$(find bot_description)/launch/model_view.launch"/>
+
+    <!-- Robot device active -->
+    <include file="$(find bot_device)/launch/device.launch.xml">
+        <!-- Motor controll parameters -->
+        <arg name="width"               value="$(env width)"/>
+        <arg name="wheel_radius"        value="$(env wheel_radius)"/>
+
+    </include>
+
+    <!-- Odometry node active -->
+    <include file="$(find bot_localization)/launch/odometry.launch.xml">
+        <arg name="odom"                value="true"/>
+        <arg name="imu"                 value="true"/>
+        <arg name="vo"                  value="false"/>
+        <arg name="odom_switch_used"    value="false"/>
+    </include>
+
+</launch>

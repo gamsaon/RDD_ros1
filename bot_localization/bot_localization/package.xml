@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>bot_localization</name>
+  <version>0.0.0</version>
+  <description>The bot_localization package</description>
+
+  <maintainer email="jane.doe@example.com">Jane Doe</maintainer>
+
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Pose estimation-->
+  <exec_depend>robot_pose_ekf</exec_depend>
+
+  <!-- Pose-tracking-->
+  <exec_depend>amcl</exec_depend>
+
+  <!-- out of localization-->
+  <exec_depend>map_server</exec_depend>
+
+  </package>

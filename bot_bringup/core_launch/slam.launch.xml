@@ -1,0 +1,7 @@
+<launch>
+  <arg name="resolution" default="0.05"/>
+
+    <include file="$(find bot_slam)/launch/cartographer.launch.xml">
+        <param name="resolution" value="$(arg resolution)"/>
+    </include>
+</launch>

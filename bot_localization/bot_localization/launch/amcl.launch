@@ -1,0 +1,105 @@
+<launch>
+
+  <!--Mode option -->
+  <arg name="scan_topic"          default="scan"/>
+  <arg name="repulsive_mode"      default="false"/>
+  <arg name="recovery_mode"       default="false"/>
+  <arg name="nomotion_mode"       default="false"/>
+  <!-- <arg name="map_environment"     default="normal" /> -->
+
+  <arg name="initial_pose_x" default="0.0"/>
+  <arg name="initial_pose_y" default="0.0"/>
+  <arg name="initial_pose_a" default="0.0"/>
+
+
+  <!-- AMCL node  -->
+  <node name="amcl" pkg="amcl" type="amcl" respawn="true" output="screen">
+    <param name="min_particles"             value="100"/>
+    <param name="max_particles"             value="3000"/>
+    <param name="kld_err"                   value="0.05"/>
+    <param name="kld_z"                     value="0.5"/>
+    <param name="update_min_d"              value="0.1"/>
+    <param name="update_min_a"              value="0.15"/>
+    <param name="gui_publish_rate"          value="-1.0"/>
+
+    <!-- scan topic -->
+    <remap from="scan"                      to="$(arg scan_topic)"/>
+    <param name="laser_max_range"           value="-1.0"/>
+    <param name="laser_max_beams"           value="-1.0"/> <!-- 720 -->
+    <param name="laser_z_hit"               value="0.9"/>  <!-- 0.6 -->
+    <param name="laser_z_short"             value="0.1"/>
+    <param name="laser_z_max"               value="0.05"/>
+    <param name="laser_z_rand"              value="0.5"/>
+    <param name="laser_sigma_hit"           value="0.2"/>
+    <param name="laser_lambda_short"        value="0.1"/>
+    <param name="laser_likelihood_max_dist" value="2.0"/>
+    <param name="laser_model_type"          value="likelihood_field_prob"/>
+    <!-- <param name="laser_model_type"          value="likelihood_field"/> -->
+
+
+    <!-- odom type -->
+    <!-- <param name="odom_model_type"           value="robot_pose_ekf"/> -->
+    <param name="odom_model_type"           value="diff-corrected"/>
+    <param name="odom_alpha1"               value="0.01"/> <!-- 0.3 -->
+    <param name="odom_alpha2"               value="0.04"/> <!-- 0.2 -->
+    <param name="odom_alpha3"               value="0.04"/> <!-- 0.2 -->
+    <param name="odom_alpha4"               value="0.002"/> <!-- 0.2 -->
+    <param name="odom_alpha5"               value="0.2"/>        
+
+
+    <!-- Frame ID -->
+    <param name="odom_frame_id"             value="odom"/>
+    <param name="base_frame_id"             value="base_footprint"/>
+    <param name="global_frame_id"           value="map"/>
+    <param name="/use_sim_time"             value="false"/>
+   
+
+    <!-- 0. Basic params -->
+    <param name="use_map_topic"             value="true"/>
+    <param name="first_map_only"            value="true"/>
+    <param name="tf_broadcast"              value="true"/>
+    <param name="selective_resampling"      value="true"/>
+    <param name="transform_tolerance"       value="0.1"/>
+
+
+    <!-- Particle recovery using gaussian distribution -->
+    <param name="recovery_mode"                 value="$(arg recovery_mode)"/>
+    <param name="recovery_method"               value="weight"/> <!-- weight, map_correction -->
+    <param name="recovery_cov_x"                value="0.5"/>
+    <param name="recovery_cov_y"                value="0.5"/>
+    <param name="recovery_cov_th"               value="2.0"/>
+
+    <param name="resample_interval"             value="1"/>
+
+    <param name="recovery_alpha_slow"           value="0.01"/>
+    <param name="recovery_alpha_fast"           value="0.5"/>
+    <!-- <param name="recovery_alpha_slow"           value="0.0"/> -->
+    <!-- <param name="recovery_alpha_fast"           value="0.0"/> -->
+
+    <param name="recovery_threshold"            value="10.0"/>
+
+    <param name="alpha_slow"                    value="0.00"/>
+    <param name="alpha_fast"                    value="0.00"/>
+
+    <!-- for spread particles on convergency-->
+    <param name="repulsive_mode"                value="$(arg repulsive_mode)"/>
+    <param name="repulsive_time"                value="10"/>
+    <param name="threshold_x_covariance"        value="0.05"/>
+    <param name="threshold_y_covariance"        value="0.03"/>
+    <param name="threshold_angle_covariance"    value="0.003"/>
+
+    <!-- force update-->
+    <param name="nomotion_mode"                  value="$(arg nomotion_mode)"/>
+    <param name="nomotion_interval"             value="10"/>
+
+    <!-- for spread particles on Divergency-->
+    <param name="scout_divergency_mode"         value="false"/>
+
+    <!-- for particle controller -->
+    <param name="particle_controller_mode"      value="true"/>
+    <param name="long_stop_time_threshold"      value="10.0"/>
+    <param name="recovery_ban_threshold"        value="3.0"/>
+
+  </node>
+
+</launch>

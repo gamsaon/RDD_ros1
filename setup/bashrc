@@ -1,0 +1,23 @@
+# Add the contents of this file to ~/.bashrc
+
+alias teleop='roslaunch bot_teleop teleop_key.launch'
+
+alias re='sudo service bot restart'
+alias logger='journalctl -fu bot -o cat'
+
+alias nav='rostopic pub --once /bot_mode std_msgs/String "data: 'NAV'"'
+alias slam='rostopic pub --once /bot_mode std_msgs/String "data: 'SLAM'"'
+alias reset='rostopic pub --once /bot_mode std_msgs/String "data: 'RESET'"'
+
+source /opt/ros/noetic/setup.bash
+source ~/catkin_ws/devel_isolated/setup.bash
+
+export ROS_MASTER_URI=http://localhost:11311
+export ROS_HOSTNAME=localhost
+
+export ROS_DB_PATH='/home/sokim/ROS_DB'
+export ROS_PACKAGE_PATH=/opt/ros/noetic/share:/home/sokim/catkin_ws/src
+
+#source /etc/ros/env.sh
+export TURTLEBOT3_MODEL=waffle_pi
+export LDS_MODEL=LDS-01

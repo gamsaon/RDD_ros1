@@ -1,0 +1,18 @@
+<launch>
+  <arg name="scan_topic"          default="scan"/>
+  <!--Mode option -->
+  <!-- <arg name="map_environment"     default="normal" /> -->
+
+  <!-- Map Server -->
+  <arg name="map_file" default="$(env ROS_DB_PATH)/map/map.yaml"/>
+  
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <!--Amcl-->
+  <include file="$(find bot_localization)/launch/amcl.launch">
+    <arg name="scan_topic"         value="$(arg scan_topic)"/>
+    <!-- <arg name="map_environment"    value="$(arg map_environment)"/> -->
+  </include>
+
+
+</launch>

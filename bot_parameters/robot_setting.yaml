@@ -1,0 +1,18 @@
+# Robot model
+# width: 508, length: 480.5, center(254, 240.25) 
+footprint: "0.254, -0.254, 0.24025, -0.24025"
+
+# LiDAR
+laser_min_angle: "-1.74533"  # rad; -100
+laser_max_angle: "1.74533"   # rad; 100
+
+# Camera
+camera_used: "false"
+
+# Wheel 
+width: "0.3825"
+wheel_radius: "0.065"
+#wheel_base: "0.375"  # cencter to center
+
+# map
+map_environment: "normal"

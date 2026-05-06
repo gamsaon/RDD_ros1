@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>bot_parameters</name>
+  <version>0.0.0</version>
+  <description>The bot_parameters package</description>
+
+  <maintainer email="jane.doe@example.com">Jane Doe</maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>

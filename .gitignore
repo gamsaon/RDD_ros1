@@ -1,0 +1,16 @@
+.codex
+
+# ROS/catkin build outputs
+build/
+devel/
+install/
+log/
+.catkin_tools/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Editor/OS noise
+.DS_Store
+*~

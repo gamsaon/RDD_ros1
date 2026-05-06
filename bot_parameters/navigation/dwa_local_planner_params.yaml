@@ -1,0 +1,58 @@
+DWAPlannerROS:
+
+# Robot Configuration Parameters
+  max_vel_x: 0.5
+  min_vel_x: -0.1        # go basckward
+  
+  max_vel_y: 0.0         # y related parameters should be zero in diffrenetial robot   
+  min_vel_y: 0.0
+
+# Velocity when robot is moving in staright line
+  max_vel_trans:  0.4
+  min_vel_trans:  0.0
+
+# Velocity when robot is rotating
+  max_vel_theta: 1.4
+  min_vel_theta: 0.0
+  
+# Acceleration limit for x, y coordinate and rotation
+  acc_lim_x: 1.2      # 1.0
+  acc_lim_y: 0.0
+  acc_lim_theta: 1.8  # 1.0
+
+# Goal Tolerance Parameters for each coordinate
+  xy_goal_tolerance: 0.2
+  yaw_goal_tolerance: 0.1 
+  latch_xy_goal_tolerance: false 
+  # If goal tolerance is latched, if robot ever reaches the goal xy location it will simply
+  # rotate in place, enev if it ends up outside the goal tolerance while it is doing so
+
+# Forward Simulation Parameters
+  sim_time: 2.0              # Simulation trajectory time
+
+  use_sim_time: true          # Time to make trajectory
+  sim_granularity: 0.3   
+  vx_samples: 10              # Number of samples which find in x coordinate velocity space
+  vy_samples: 0               # Number of samples which find in y coordinate velocity space (Only for omni wheel)
+  vth_samples: 20             # Number of samples which find in theta coordinate velocity space
+  controller_frequency: 5.0   # 10.0  
+  penalize_negative_x: true
+
+# Trajectory Scoring Parameters (Trajectory Evalutation)
+  path_distance_bias: 32.0 
+  goal_distance_bias: 20.0
+  # goal_distance_bias: 24.0 
+  occdist_scale: 0.02 
+  forward_point_distance: 0.5     # 0.0
+  stop_time_buffer: 10.0 
+  scaling_speed: 0.25 
+  max_scaling_factor: 0.3 
+
+# Oscillation Prevention Parameters
+  oscillation_reset_dist: 0.05 
+
+# Debugging
+  publish_traj_pc : true          # Set Trajectory Debugging
+  publish_cost_grid_pc: true      # Set costmap Debugging 
+  
+  holonomic_robot: false

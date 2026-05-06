@@ -1,0 +1,17 @@
+# Install to /etc/systemd/system/bot.service
+# Manage with: sudo systemctl {start|stop|enable|disable} bot.service
+# After editing: sudo systemctl daemon-reload
+
+[Unit]
+Description=Bringup Bot launch service
+
+[Service]
+ExecStart=/home/sokim/bot.sh
+Restart=on-abort
+# Restart=on-failure
+RestartSec=10
+User=sokim
+Group=sokim
+
+[Install]
+WantedBy=multi-user.target

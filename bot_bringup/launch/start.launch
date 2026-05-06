@@ -1,0 +1,5 @@
+<launch>
+
+    <node pkg="bot_bringup" type="bot_core.py" name="bot_core" output="screen"/>
+
+</launch>

@@ -1,0 +1,19 @@
+
+<launch>
+    <!-- Used sensor type -->
+    <arg name="camera_used"         default="false"/>
+
+    <!-- Motor controll parameters -->
+    <arg name="width"               default="0.3825"/>
+    <arg name="wheel_radius"        default="0.065"/>
+
+    <!-- Motor Control Module -->
+    <include file="$(find bot_device)/launch/motor.launch.xml">
+        <arg name="width"           value="$(arg width)"/>
+        <arg name="wheel_radius"    value="$(arg wheel_radius)"/>
+    </include>
+
+    <!-- Moduled-Laser Driver -->
+    <include file="$(find bot_device)/launch/laser.launch.xml"/>
+
+</launch>
